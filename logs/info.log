@@ -10,3 +10,21 @@ Unable to poll TPU GCE metadata: HTTPConnectionPool(host='metadata.google.intern
 INFO 2024-07-04 12:21:04,027 [root:accelerator.py:_autodetect_num_tpus:171]
 Failed to detect number of TPUs: [Errno 2] No such file or directory: '/dev/vfio'
 
+INFO 2024-07-04 12:47:44,040 [torch.distributed.nn.jit.instantiator:instantiator.py:<module>:21]
+Created a temporary directory at /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmpvp2sax1m
+
+INFO 2024-07-04 12:47:44,041 [torch.distributed.nn.jit.instantiator:instantiator.py:_write:76]
+Writing /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmpvp2sax1m/_remote_module_non_scriptable.py
+
+INFO 2024-07-04 13:06:17,637 [torch.distributed.nn.jit.instantiator:instantiator.py:<module>:21]
+Created a temporary directory at /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmprtkomvk3
+
+INFO 2024-07-04 13:06:17,639 [torch.distributed.nn.jit.instantiator:instantiator.py:_write:76]
+Writing /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmprtkomvk3/_remote_module_non_scriptable.py
+
+INFO 2024-07-04 13:31:18,032 [torch.distributed.nn.jit.instantiator:instantiator.py:<module>:21]
+Created a temporary directory at /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmpmyyzj1uz
+
+INFO 2024-07-04 13:31:18,033 [torch.distributed.nn.jit.instantiator:instantiator.py:_write:76]
+Writing /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmpmyyzj1uz/_remote_module_non_scriptable.py
+

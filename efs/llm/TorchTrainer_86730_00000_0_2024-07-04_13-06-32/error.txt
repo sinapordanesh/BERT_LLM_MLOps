@@ -1,0 +1,84 @@
+Failure # 1 (occurred at 2024-07-04_13-21-17)
+[36mray::_Inner.train()[39m (pid=28542, ip=127.0.0.1, actor_id=1c25467bd002a4ccd03b464601000000, repr=TorchTrainer)
+ray.exceptions.RayTaskError(JSONDecodeError): [36mray::_RayTrainWorker__execute.get_next()[39m (pid=28601, ip=127.0.0.1, actor_id=2dd503684a4e638a4406c8d501000000, repr=<ray.train._internal.worker_group.RayTrainWorker object at 0x1183ed720>)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 33, in __execute
+    raise skipped from exception_cause(skipped)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 169, in discard_return_wrapper
+    train_func(*args, **kwargs)
+  File "/var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/ipykernel_28086/3384315726.py", line 44, in train_loop_per_worker
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 657, in wrapper
+    return fn(*args, **kwargs)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 748, in report
+    _get_session().report(metrics, checkpoint=checkpoint)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 441, in report
+    user_metadata = persisted_checkpoint.get_metadata()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_checkpoint.py", line 158, in get_metadata
+    return json.loads(f.readall().decode("utf-8"))
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+[36mray::_Inner.train()[39m (pid=28542, ip=127.0.0.1, actor_id=1c25467bd002a4ccd03b464601000000, repr=TorchTrainer)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/air/_internal/util.py", line 98, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/base_trainer.py", line 799, in _trainable_func
+    super()._trainable_func(self._merged_config)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 248, in _trainable_func
+    output = fn()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/base_trainer.py", line 107, in _train_coordinator_fn
+    trainer.training_loop()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/data_parallel_trainer.py", line 470, in training_loop
+    self._run_training(training_iterator)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/data_parallel_trainer.py", line 370, in _run_training
+    for training_results in training_iterator:
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/trainer.py", line 123, in __next__
+    next_results = self._run_with_error_handling(self._fetch_next_result)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/trainer.py", line 89, in _run_with_error_handling
+    return func()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/trainer.py", line 153, in _fetch_next_result
+    results = self._backend_executor.get_next_results()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/backend_executor.py", line 593, in get_next_results
+    results = self.get_with_failure_handling(futures)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/backend_executor.py", line 669, in get_with_failure_handling
+    success, exception = check_for_failure(remote_values)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 60, in check_for_failure
+    raise StartTraceback from exc
+ray.air._internal.util.StartTraceback
+
+The above exception was the direct cause of the following exception:
+
+[36mray::_Inner.train()[39m (pid=28542, ip=127.0.0.1, actor_id=1c25467bd002a4ccd03b464601000000, repr=TorchTrainer)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 328, in train
+    result = self.step()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 104, in step
+    training_result: Optional[_TrainingResult] = session.get_next()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 304, in get_next
+    self._report_thread_runner_error(block=True)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 370, in _report_thread_runner_error
+    raise StartTraceback from e
+ray.air._internal.util.StartTraceback
+
+During handling of the above exception, another exception occurred:
+
+[36mray::_Inner.train()[39m (pid=28542, ip=127.0.0.1, actor_id=1c25467bd002a4ccd03b464601000000, repr=TorchTrainer)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    skipped = skip_exceptions(e)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/air/_internal/util.py", line 53, in skip_exceptions
+    return skip_exceptions(exc.__cause__)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/air/_internal/util.py", line 53, in skip_exceptions
+    return skip_exceptions(exc.__cause__)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/air/_internal/util.py", line 56, in skip_exceptions
+    new_exc = copy.copy(exc).with_traceback(exc.__traceback__)
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/copy.py", line 102, in copy
+    return _reconstruct(x, None, *rv)
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/copy.py", line 265, in _reconstruct
+    y = func(*args)
+TypeError: RayTaskError.make_dual_exception_type.<locals>.cls.__init__() takes 2 positional arguments but 4 were given

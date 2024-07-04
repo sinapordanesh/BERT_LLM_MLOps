@@ -1,0 +1,5 @@
+{
+    "dropout_p": 0.5,
+    "embedding_dim": 768,
+    "num_classes": 4
+}
