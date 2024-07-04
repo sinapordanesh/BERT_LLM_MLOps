@@ -1,0 +1,6 @@
+INFO 2024-07-04 10:57:30,687 [torch.distributed.nn.jit.instantiator:instantiator.py:<module>:21]
+Created a temporary directory at /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmppb3hl7fh
+
+INFO 2024-07-04 10:57:30,689 [torch.distributed.nn.jit.instantiator:instantiator.py:_write:76]
+Writing /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmppb3hl7fh/_remote_module_non_scriptable.py
+
