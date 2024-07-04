@@ -1,0 +1,2 @@
+epoch,lr,train_loss,val_loss,timestamp,should_checkpoint,done,training_iteration,trial_id,date,time_this_iter_s,time_total_s,pid,hostname,node_ip,time_since_restore,iterations_since_restore,checkpoint_dir_name
+0,8.282213430741876e-05,0.5721854865550995,0.5187958255410194,1720132238,True,False,1,18ce096f,2024-07-04_16-30-41,95.54312133789062,95.54312133789062,28064,samans-mbp.ucalgary.ca,127.0.0.1,95.54312133789062,1,checkpoint_000000

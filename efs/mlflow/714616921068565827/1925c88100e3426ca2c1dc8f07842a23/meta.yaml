@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/sina/Documents/GitHub_Local/mlops/notebooks/../efs/mlflow/714616921068565827/1925c88100e3426ca2c1dc8f07842a23/artifacts
+end_time: 1720132141497
+entry_point_name: ''
+experiment_id: '714616921068565827'
+lifecycle_stage: active
+run_id: 1925c88100e3426ca2c1dc8f07842a23
+run_name: TorchTrainer_61b8d9be
+run_uuid: 1925c88100e3426ca2c1dc8f07842a23
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1720132012342
+status: 4
+tags: []
+user_id: unknown
