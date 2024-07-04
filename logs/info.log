@@ -37,3 +37,6 @@ Writing /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmpy8mubioy/_remote_mod
 INFO 2024-07-04 17:27:41,773 [/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/serve/_private/api.py:api.py:serve_start:328]
 Started detached Serve instance in namespace "serve".
 
+INFO 2024-07-04 17:30:21,276 [/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/serve/_private/api.py:api.py:serve_start:308]
+Connecting to existing Serve app in namespace "serve". New http options will not be applied.
+
