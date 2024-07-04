@@ -1,0 +1,39 @@
+Failure # 1 (occurred at 2024-07-04_11-25-52)
+[36mray::_Inner.train()[39m (pid=60970, ip=127.0.0.1, actor_id=2c5a91b5d179d5122784366e01000000, repr=TorchTrainer)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/air/_internal/util.py", line 91, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 383, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/base_trainer.py", line 856, in _trainable_func
+    super()._trainable_func(self._merged_config)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 822, in _trainable_func
+    output = fn()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/base_trainer.py", line 766, in train_func
+    trainer.training_loop()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/data_parallel_trainer.py", line 573, in training_loop
+    self._report(training_iterator)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/data_parallel_trainer.py", line 430, in _report
+    for results in training_iterator:
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/trainer.py", line 180, in __next__
+    next_results = self._run_with_error_handling(self._fetch_next_result)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/trainer.py", line 142, in _run_with_error_handling
+    return func()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/trainer.py", line 223, in _fetch_next_result
+    results = self._backend_executor.get_next_results()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/backend_executor.py", line 496, in get_next_results
+    results = self.get_with_failure_handling(futures)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/backend_executor.py", line 598, in get_with_failure_handling
+    self._increment_failures()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/backend_executor.py", line 660, in _increment_failures
+    raise failure
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 54, in check_for_failure
+    ray.get(object_ref)
+ray.exceptions.RayActorError: The actor died unexpectedly before finishing this task.
+	class_name: RayTrainWorker
+	actor_id: 9db1e0eed811930ad8ab8c4301000000
+	pid: 61033
+	namespace: d4510714-8e95-474b-94bd-ed96fb872c81
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.

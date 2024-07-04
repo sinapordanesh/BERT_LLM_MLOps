@@ -1,0 +1,29 @@
+Failure # 1 (occurred at 2024-07-04_12-08-43)
+[36mray::_Inner.train()[39m (pid=88444, ip=127.0.0.1, actor_id=13d8b1c5d9b18cd11983b81001000000, repr=TorchTrainer)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 400, in train
+    raise skipped from exception_cause(skipped)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 54, in check_for_failure
+    ray.get(object_ref)
+ray.exceptions.RayTaskError(JSONDecodeError): [36mray::_RayTrainWorker__execute.get_next()[39m (pid=88497, ip=127.0.0.1, actor_id=44ec5aaf1dd51715f5b93a9101000000, repr=<ray.train._internal.worker_group.RayTrainWorker object at 0x120d09b40>)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/worker_group.py", line 33, in __execute
+    raise skipped from exception_cause(skipped)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/utils.py", line 129, in discard_return_wrapper
+    train_func(*args, **kwargs)
+  File "/var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/ipykernel_16719/3384315726.py", line 44, in train_loop_per_worker
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 835, in wrapper
+    return fn(*args, **kwargs)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 897, in report
+    _get_session().report(metrics, checkpoint=checkpoint)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 629, in report
+    return self.new_report(metrics, checkpoint=checkpoint)
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_internal/session.py", line 600, in new_report
+    user_metadata = persisted_checkpoint.get_metadata()
+  File "/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/train/_checkpoint.py", line 137, in get_metadata
+    return json.loads(f.readall().decode("utf-8"))
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Users/sina/.pyenv/versions/3.10.11/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
