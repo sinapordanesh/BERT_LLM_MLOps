@@ -34,3 +34,6 @@ Created a temporary directory at /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/
 INFO 2024-07-04 16:16:33,678 [torch.distributed.nn.jit.instantiator:instantiator.py:_write:76]
 Writing /var/folders/94/p22yrw514tv4kplhpq9hmknr0000gn/T/tmpy8mubioy/_remote_module_non_scriptable.py
 
+INFO 2024-07-04 17:27:41,773 [/Users/sina/Documents/GitHub_Local/mlops/.venv/lib/python3.10/site-packages/ray/serve/_private/api.py:api.py:serve_start:328]
+Started detached Serve instance in namespace "serve".
+
