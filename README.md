@@ -57,4 +57,134 @@ Ray must be initialized to manage distributed data processing and model training
         import ray
         if not ray.is_initialized():
             ray.init()
+    ```
    
+## Workflow Overview
+This section outlines the core activities that transform raw data into actionable insights and operational models, using advanced machine learning and data processing techniques.
+
+### Data Handling
+The data handling process is divided into several key areas: ingestion, preprocessing, and exploratory data analysis.
+
+#### Ingestion
+Data is ingested from a public CSV file hosted on GitHub. This stage loads the data into a Pandas DataFrame which acts as the basis for all further operations.
+
+```python
+import pandas as pd
+DATASET_LOC = "https://raw.githubusercontent.com/GokuMohandas/Made-With-ML/main/datasets/dataset.csv"
+df = pd.read_csv(DATASET_LOC)
+print(df.head())
+```
+
+#### Preprocessing
+The preprocessing steps involve cleaning the data, transforming text data into a format suitable for modeling, and encoding labels. Text cleaning includes lowercasing, removing stopwords, and other common NLP preprocessing methods.
+
+```python
+import nltk
+from nltk.corpus import stopwords
+nltk.download("stopwords")
+STOPWORDS = stopwords.words("english")
+
+def clean_text(text, stopwords=STOPWORDS):
+    text = text.lower()  # lowercasing
+    text = re.sub(r"\b(" + r"|".join(stopwords) + r")\b\s*", "", text)  # remove stopwords
+    text = re.sub("[^a-z0-9]+", " ", text)  # keep only alphanumeric characters
+    return text.strip()
+
+df["clean_text"] = df["text"].apply(clean_text)
+```
+
+#### Exploratory Data Analysis (EDA)
+EDA involves visualizing and understanding the dataset through various angles to spot trends, anomalies, and underlying patterns.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(x="tag", data=df)
+plt.title("Distribution of Tags")
+plt.show()
+
+# Generate a word cloud
+from wordcloud import WordCloud
+text = " ".join(df["clean_text"].dropna())
+wordcloud = WordCloud(stopwords=STOPWORDS, background_color="black").generate(text)
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+```
+
+### Model Training and Evaluation
+This part of the workflow deals with setting up the training environment, running the training process, and evaluating the model's performance.
+
+#### Training Setup
+We utilize PyTorch and the Hugging Face `transformers` library to set up and fine-tune a pre-trained BERT model.
+
+```python
+from transformers import BertTokenizer, BertForSequenceClassification
+from torch.utils.data import DataLoader
+
+tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+model = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=len(df["tag"].unique()))
+
+# Tokenization
+def tokenize_function(examples):
+    return tokenizer(examples["text"], padding="max_length", truncation=True)
+
+# DataLoader setup
+train_dataloader = DataLoader(dataset, batch_size=16, shuffle=True)
+```
+
+#### Evaluation and Metrics
+Model evaluation is crucial to understand the effectiveness of the training. Metrics such as accuracy, precision, recall, and F1-score are calculated to measure performance.
+
+```python
+from sklearn.metrics import classification_report
+
+# Predictions
+predictions = model.predict(validation_data)
+report = classification_report(y_true, predictions, target_names=df["tag"].unique())
+print(report)
+```
+
+### Model Deployment
+Model deployment involves setting up a system that can receive input data, process it through the model, and return predictions.
+
+#### Batch Inference
+Batch inference is used for processing data in large batches, suitable for less time-sensitive applications.
+
+```python
+# Setup a batch processing pipeline
+def batch_predict(data):
+    processed_data = preprocess(data)
+    predictions = model(processed_data)
+    return predictions
+
+batch_data = load_batch_data()
+results = batch_predict(batch_data)
+```
+
+#### Online Inference
+For real-time applications, we set up an online inference system using FastAPI, which provides RESTful endpoints for model interaction.
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    text: str
+
+@app.post("/predict/")
+async def predict(item: Item):
+    processed_text = preprocess(item.text)
+    prediction = model(processed_text)
+    return {"prediction": prediction}
+
+# Run the API server
+import uvicorn
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+These sections provide a detailed overview of the entire machine learning workflow, from data preparation to deployment, emphasizing practical implementation and scalability.
