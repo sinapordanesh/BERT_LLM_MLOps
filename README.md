@@ -1,7 +1,13 @@
 # BERT for Natural Language Processing - MLOps Project
+<!-- ![Cover](./images/logos.png) -->
+<div style="text-align: center;">
+    <img src="./images/logos.png" alt="Sample Image" height="450">
+</div>
 
-## Table of Contents
+
+## 📕 Table of Contents
 - [Introduction](#introduction)
+    - [Project's Prduct Design](#prduct-design)
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 - [Setup and Installation](#setup-and-installation)
@@ -26,11 +32,18 @@
 ## Introduction
 This project applies modern MLOps practices to build, deploy, and maintain an NLP model using the BERT architecture. The goal is to efficiently handle natural language processing tasks by leveraging a pre-trained BERT model and enhancing it through fine-tuning, distributed computing, and advanced deployment techniques. The project not only demonstrates a robust machine learning pipeline but also integrates extensive data handling, model evaluation, and deployment strategies ensuring scalability and reproducibility.
 
+### Prduct Design
+<div style="text-align: center;">
+    <img src="./images/product_design.svg" alt="Sample Image" height="750">
+</div>
+
 ## Project Structure
 The repository is structured around a main Jupyter notebook which documents and executes the entire MLOps pipeline:
 - `start.ipynb`: This notebook contains the comprehensive workflow, including data ingestion, preprocessing, exploratory data analysis, model training, evaluation, and deployment. It serves as the central document where all processes are scripted and annotated for clarity and reproducibility.
 
 ## Technologies Used
+<img src="./images/utilities.png" alt="Sample Image" height="150">
+
 - **Ray**:  Utilized for its powerful distributed computing capabilities, Ray is integral for handling large datasets and parallelizing data processing and model training.
 - **BERT and Transformers**: Using Hugging Face's transformers library, the project harnesses a pre-trained BERT model for NLP tasks, benefiting from the rich, contextual representations that BERT provides.
 - **Pandas**:  Employed for data ingestion and manipulation, Pandas is used to handle data frames and perform data cleaning and slicing operations efficiently.
@@ -60,6 +73,11 @@ Ray must be initialized to manage distributed data processing and model training
     ```
    
 ## Workflow Overview
+
+<div style="text-align: center;">
+    <img src="./images/workloads.png" alt="Sample Image" height="350">
+</div>
+
 This section outlines the core activities that transform raw data into actionable insights and operational models, using advanced machine learning and data processing techniques.
 
 ### Data Handling
@@ -268,6 +286,6 @@ serve.deploy(ModelService)
 This project is released under the MIT License, which provides flexibility for users to modify and redistribute the software.
 
 ## Acknowledgments
-Thanks ![MadeWithML](https://madewithml.com/) for providing an awsome free tutorial on MLOps practical project guide. 
+Thanks [MadeWithML](https://madewithml.com/) for providing an awsome free tutorial on MLOps practical project guide. 
 Special thanks to the developers of MLflow, Ray, and Hugging Face's Transformers library for their powerful tools.
 
