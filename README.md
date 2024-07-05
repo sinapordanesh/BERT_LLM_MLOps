@@ -1,7 +1,7 @@
 # BERT for Natural Language Processing - MLOps Project
 <!-- ![Cover](./images/logos.png) -->
 <div style="text-align: center;">
-    <img src="./images/logos.png" alt="Sample Image" height="450">
+    <img src="./images/logos.png" alt="Sample Image" height="300">
 </div>
 
 
