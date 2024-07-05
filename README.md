@@ -263,26 +263,11 @@ class ModelService:
 serve.deploy(ModelService)
 ```
 
-## Contributing
-Contributions are welcome! If you're looking to contribute, please fork the repository, make your changes, and submit a pull request.
 
 ## License
 This project is released under the MIT License, which provides flexibility for users to modify and redistribute the software.
 
-```
-MIT License
-
-Copyright (c) 2024 Your Name
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-...
-```
-
 ## Acknowledgments
-Thanks to all the open source projects and contributors that made this project possible. Special thanks to the developers of MLflow, Ray, and Hugging Face's Transformers library for their powerful tools.
+Thanks ![MadeWithML](https://madewithml.com/) for providing an awsome free tutorial on MLOps practical project guide. 
+Special thanks to the developers of MLflow, Ray, and Hugging Face's Transformers library for their powerful tools.
 
