@@ -188,3 +188,101 @@ if __name__ == "__main__":
 ```
 
 These sections provide a detailed overview of the entire machine learning workflow, from data preparation to deployment, emphasizing practical implementation and scalability.
+
+## Experiment Tracking
+Experiment tracking is essential for managing and comparing different model versions and experimental setups. This project utilizes MLflow for this purpose, which integrates seamlessly with our training scripts.
+
+```python
+import mlflow
+from mlflow.tracking import MlflowClient
+
+MLFLOW_TRACKING_URI = 'http://localhost:5000'
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+
+# Start an MLflow experiment
+with mlflow.start_run(run_name='BERT_Experiment') as run:
+    # Log parameters and metrics
+    mlflow.log_param("learning_rate", 0.001)
+    mlflow.log_metric("accuracy", model_accuracy)
+
+    # Save model artifacts
+    mlflow.pytorch.log_model(model, "model")
+
+print(f"Experiment details: {mlflow.get_run(run.info.run_id)}")
+```
+
+## Hyperparameter Tuning
+To optimize the model's performance, we employ Ray Tune for hyperparameter tuning, which allows us to explore a vast space efficiently.
+
+```python
+from ray import tune
+from ray.tune.schedulers import ASHAScheduler
+
+def training_function(config):
+    # Initialize model with config parameters
+    model.init(config)
+    for epoch in range(10):
+        train_loss = model.train()
+        tune.report(loss=train_loss)  # Report metrics to Ray Tune
+
+# Define the search space
+config = {
+    "learning_rate": tune.loguniform(1e-4, 1e-1),
+    "batch_size": tune.choice([16, 32, 64])
+}
+
+# Setup the scheduler and execute the tuning
+scheduler = ASHAScheduler(max_t=100, grace_period=10)
+analysis = tune.run(training_function, config=config, scheduler=scheduler, num_samples=10)
+best_trial = analysis.get_best_trial("loss", "min", "last")
+print(f"Best trial config: {best_trial.config}")
+```
+
+## Custom Model Logic
+Implementing robust model logic is crucial for handling diverse input scenarios and maintaining accuracy across all operational environments.
+
+```python
+from ray import serve
+
+@serve.deployment(route_prefix="/predict")
+class ModelService:
+    def __init__(self, model):
+        self.model = model
+
+    def __call__(self, request):
+        text = request.json()["text"]
+        prediction = self.model.predict(text)
+        return {"prediction": prediction}
+
+    def fallback(self, text):
+        # Custom logic for uncertain predictions
+        if self.model.confidence(text) < 0.5:
+            return "Uncertain"
+        return self.model.predict(text)
+
+serve.deploy(ModelService)
+```
+
+## Contributing
+Contributions are welcome! If you're looking to contribute, please fork the repository, make your changes, and submit a pull request.
+
+## License
+This project is released under the MIT License, which provides flexibility for users to modify and redistribute the software.
+
+```
+MIT License
+
+Copyright (c) 2024 Your Name
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+...
+```
+
+## Acknowledgments
+Thanks to all the open source projects and contributors that made this project possible. Special thanks to the developers of MLflow, Ray, and Hugging Face's Transformers library for their powerful tools.
+
