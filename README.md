@@ -1,4 +1,4 @@
-# BERT for Natural Language Processing - MLOps Project
+# BERT for Natural Language Processing - GenAI, Fine-Tuning & MLOps
 <!-- ![Cover](./images/logos.png) -->
 <div style="text-align: center;">
     <img src="./images/logos.png" alt="Sample Image" height="300">
